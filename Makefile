@@ -2,7 +2,7 @@
 
 all: gifs
 
-VERSION=v0.0.2
+VERSION=v0.1.14
 
 TAPES=$(shell ls doc/vhs/*tape)
 gifs: $(TAPES)
@@ -22,16 +22,27 @@ build:
 	go build ./...
 
 goreleaser:
-	goreleaser release --snapshot --rm-dist
+	goreleaser release --skip-sign --snapshot --rm-dist
 
-tag-release:
-	git tag ${VERSION}
+tag-major:
+	git tag $(shell svu major)
+
+tag-minor:
+	git tag $(shell svu minor)
+
+tag-patch:
+	git tag $(shell svu patch)
 
 release:
-	git push origin ${VERSION}
-	GOPROXY=proxy.golang.org go list -m github.com/go-go-golems/XXX@${VERSION}
+	git push --tags
+	GOPROXY=proxy.golang.org go list -m github.com/go-go-golems/XXX@$(shell svu current)
 
 bump-glazed:
-	go get github.com/go-go-golems/glazed@main
-	go get github.com/go-go-golems/clay@main
+	go get github.com/go-go-golems/glazed@latest
+	go get github.com/go-go-golems/clay@latest
 	go mod tidy
+
+XXX_BINARY=$(shell which XXX)
+install:
+	go build -o ./dist/XXX ./cmd/XXX && \
+		cp ./dist/XXX $(SQLETON_BINARY)
