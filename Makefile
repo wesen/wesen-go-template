@@ -45,4 +45,4 @@ bump-glazed:
 XXX_BINARY=$(shell which XXX)
 install:
 	go build -o ./dist/XXX ./cmd/XXX && \
-		cp ./dist/XXX $(SQLETON_BINARY)
+		cp ./dist/XXX $(XXX_BINARY)
