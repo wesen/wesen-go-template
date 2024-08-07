@@ -1,3 +1,4 @@
+version: 2
 project_name: XXX
 
 before:
@@ -26,11 +27,17 @@ changelog:
     exclude:
       - '^docs:'
       - '^test:'
+
+signs:
+  - artifacts: checksum
+    # setup for github actions according to https://goreleaser.com/ci/actions/
+    args: [ "--batch", "-u", "{{ .Env.GPG_FINGERPRINT }}", "--output", "${signature}", "--detach-sign", "${artifact}" ]
+
 brews:
   - name: XXX
     description: "XXX is a tool"
     homepage: "https://github.com/go-go-golems/XXX"
-    tap:
+    repository:
       owner: go-go-golems
       name: homebrew-go-go-go
       token: "{{ .Env.TAP_GITHUB_TOKEN }}"
