@@ -14,6 +14,17 @@ docker-lint:
 lint:
 	golangci-lint run -v
 
+lintmax:
+	golangci-lint run -v --max-same-issues=100
+
+gosec:
+	go install github.com/securego/gosec/v2/cmd/gosec@latest
+	gosec -exclude=G101,G304,G301,G306 -exclude-dir=.history ./...
+
+govulncheck:
+	go install golang.org/x/vuln/cmd/govulncheck@latest
+	govulncheck ./...
+
 test:
 	go test ./...
 
