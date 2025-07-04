@@ -35,6 +35,8 @@
 
 - Only use the toplevel go.mod, don't create new ones.
 - When writing a new experiment / app, add zerolog logging to help debug and figure out how it works, add --log-level flag to set the log level.
+- When using go:embed, import embed as `_ "embed"`
+- WHen using build tagged features, make sure the software compiles without the tag as well
 </goGuidelines>
 
 <webGuidelines>
