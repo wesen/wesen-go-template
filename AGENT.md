@@ -1,6 +1,7 @@
 # Agent Guidelines for go-go-golems go projects
 
 ## Build Commands
+
 - Run a binary in XXX/YYY/FOOO: `go run ./XXX/YYY/FOOO` . Use this instead of build + ./XXX.
 - Build: `go build ./...`
 - Test: `go test ./...`
@@ -9,10 +10,11 @@
 - Lint: `golangci-lint run -v` or `make lint`
 - Format: `go fmt ./...`
 
-IMPORTANT: To run a server and do some interaction with it, use tmux, this makes it very easy to kill a server. 
+IMPORTANT: To run a server and do some interaction with it, use tmux, this makes it very easy to kill a server.
 Use capture-pane to read the output.
 
 ## Project Structure
+
 - `cmd/`: CLI commands and entry points
 - `pkg/`: Library code organized by domain
 - `examples/`: Example configurations and usage
@@ -66,16 +68,3 @@ If it looks like your edits aren't applied, stop immediately and say "STOPPING B
 
 Run the format_file tool at the end of each response.
 </generalGuidelines>
-
-<gitGuidelines>
-After each successful run, output a git commit message as yaml, using gitmoji for th title.
-If new APIs, endpoints or CLI commands were added, document them in the commit message.
-Make a list of the tests that were run and their results.
-
-Avoid general statements like "created extensible foundation" or "this allows for...".
-
-title: <title>
-description: <description>
-
-and store in directory root as .git-commit-message.yaml
-</gitGuidelines>
